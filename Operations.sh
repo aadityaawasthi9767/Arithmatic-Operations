@@ -17,19 +17,19 @@ Records[((1))]=$sub;
 mult=$((num1*num2*num3));
 Records[((2))]=$mult;
 
-div=$((num1/num2/num3));
+div=`(($num1/$num2/$num3))` | bc;
 Records[((3))]=$div;
 
 
 for(( i=0 ; i<=2 ; i++ ))
 do
-	for(( j=i+1 ; j<=((3)) ; j++ ))
+	for(( j=i+1 ; j<=3 ; j++ ))
 	do
-		if [ ${Records[ ((j)) ]} -le ${Records[ ((i)) ]} ]
+		if [ Records[j] -le Records[i] ]
 		then
-			temp=$Records[i];
-			Records[i]=$Records[j];
-			Records[j]=$temp;
+			temp=Records[i];
+			Records[i]=Records[j];
+			Records[j]=temp;
 		fi
 	done
 done
